@@ -8,16 +8,18 @@
 		"/dist"
 	],
 	"scripts": {
-		"build": "tsc --project tsconfig.json"
+		"build:lib": "tsc --project tsconfig.json",
+		"build:docs": "typedoc --options typedoc.json"
 	},
 	"devDependencies": {
 		"@eslint/eslintrc": "^3.0.2",
 		"@eslint/js": "^9.1.1",
 		"@typescript-eslint/eslint-plugin": "^7.7.1",
 		"@typescript-eslint/parser": "^7.7.1",
-		"eslint": "^9.1.1",
+		"eslint": "^8.57.0",
 		"eslint-config-xo-typescript": "^4.0.0",
 		"globals": "^15.0.0",
+		"typedoc": "^0.25.13",
 		"typescript": "^5.4.5"
 	}
 }
