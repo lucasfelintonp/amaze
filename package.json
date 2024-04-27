@@ -1,0 +1,20 @@
+{
+  "name": "amaze",
+  "version": "0.1.0",
+  "description": "Util and simple functions for make our day a little easy",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "/dist"
+  ],
+  "devDependencies": {
+    "@eslint/eslintrc": "^3.0.2",
+    "@eslint/js": "^9.1.1",
+    "@typescript-eslint/eslint-plugin": "^7.7.1",
+    "@typescript-eslint/parser": "^7.7.1",
+    "eslint": "^9.1.1",
+    "eslint-config-xo-typescript": "^4.0.0",
+    "globals": "^15.0.0",
+    "typescript": "^5.4.5"
+  }
+}
