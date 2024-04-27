@@ -12,8 +12,7 @@ const EMPTY_STRING_PATTERN = /^\s*$/;
 
 /**
  * Check if a given string matchs with a pattern.
- * @param {String} str
- * @param {RegExp} pattern
+ * @param {String} value
  * @return {Boolean}
  */
 
