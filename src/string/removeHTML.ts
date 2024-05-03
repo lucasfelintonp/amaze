@@ -1,8 +1,11 @@
+import { isEmpty } from '../validation/isEmpty';
+
 export const HTML_PATTERN = /(<([^>]+)>)/ig;
 
-export function removeHTML(html: string) {
-	if (html === null || html === '') return false;
-	else html = html.toString();
+export function removeHTML(html: string): string {
+	if (isEmpty(html)) {
+		return '';
+	}
 
 	// Regular expression to identify HTML tags in
 	// the input string. Replacing the identified
