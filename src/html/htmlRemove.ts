@@ -2,7 +2,7 @@ import { isEmpty } from '../validation/isEmpty';
 
 export const HTML_PATTERN = /(<([^>]+)>)/ig;
 
-export function removeHTML(html: string): string {
+export function htmlRemove(html: string): string {
 	if (isEmpty(html)) {
 		return '';
 	}
