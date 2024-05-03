@@ -1,0 +1,17 @@
+{
+	"editor.defaultFormatter": "rvest.vs-code-prettier-eslint",
+	"editor.formatOnType": false, // required
+	"editor.formatOnPaste": true,
+	"editor.formatOnSave": true,
+	"editor.formatOnSaveMode": "file", // required to format on save
+	"files.autoSave": "onFocusChange",
+	"vs-code-prettier-eslint.prettierLast": false, // set as "true" to run 'prettier' last not first
+	"eslint.validate": [
+		"vue",
+		"html",
+		"javascript",
+		"typescript",
+		"javascriptreact",
+		"typescriptreact"
+	]
+}
