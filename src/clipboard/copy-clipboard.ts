@@ -19,7 +19,7 @@ export function copyToClipboard(text: string) {
 		document.queryCommandSupported &&
 		document.queryCommandSupported('copy')
 	) {
-		let textarea = document.createElement('textarea');
+		const textarea = document.createElement('textarea');
 		textarea.textContent = text;
 		textarea.style.position = 'fixed'; // Prevent scrolling to bottom of page in MS Edge.
 		document.body.appendChild(textarea);
