@@ -5,17 +5,16 @@ export class DateFormat {
 	valueStr: string;
 	private _fromFormat: string = '';
 	private _toFormat: string = '';
-	private _this = this;
 
-	constructor(value: Date | string) {
+	constructor(value: Date | string | number) {
 		this.valueDt = value as Date;
-		this.valueStr = value as string;
+		this.valueStr = value.toString();
 
 		this._addPattern();
 	}
 
 	private _addPattern(): DateFormat {
-		return this._this;
+		return this;
 	}
 
 	from(value: string): DateFormat {
@@ -34,6 +33,8 @@ export class DateFormat {
 
 		const HH = date.getHours();
 		const mm = date.getMinutes();
+
+		const ss = date.getSeconds();
 
 		switch (this._toFormat) {
 			case 'minutes':
@@ -60,6 +61,9 @@ export class DateFormat {
 
 			case 'HHmm':
 				return `${HH}${mm}`;
+
+			case 'HH:mm:ss':
+				return `${HH}:${mm}:${ss}`;
 
 			default:
 				return date;
