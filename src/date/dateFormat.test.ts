@@ -7,18 +7,10 @@ describe('DateFormat To Format', () => {
 			"Error trying format. From format: 'Hmm' not available"
 		);
 
-		expect(new DateFormat(900).from('HHmm').to('HH:mm:ss')).toBe(
-			'09:00:00'
-		);
+		expect(new DateFormat(900).from('HHmm').to('HH:mm')).toBe('09:00');
 
 		expect(new DateFormat(900).from('HHmm').to('HH:mm:ss')).toBe(
-			'10:00:00'
-		);
-		expect(new DateFormat(900).from('HHmm').to('HH:mm:ss')).toBe(
-			'05:00:00'
-		);
-		expect(new DateFormat(900).from('HHmm').to('HH:mm:ss')).toBe(
-			'20:00:00'
+			'09:00:00'
 		);
 
 		expect(new DateFormat(900).from('HHmm').to('HH:mm a')).toBe('09:00 AM');

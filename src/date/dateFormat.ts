@@ -22,19 +22,25 @@ export class DateFormat {
 		return this._addPattern();
 	}
 
-	private _toDefaultFormat(date: Date): string | Date {
-		const dd: number = date.getDay();
+	private _toMinChars(value: number, minChar: number): string {
+		let val = '000'.repeat(minChar) + value;
+		val = val.substring(val.length - minChar, val.length);
+		return val;
+	}
 
-		const MM: number = date.getMonth() + 1;
-		const MMM: string = MONTHS[date.getMonth()];
+	private _formatter(date: Date): string | Date {
+		const dd: string = this._toMinChars(date.getDay(), 2);
 
-		const yyyy: number = date.getFullYear();
-		const yy: string = yyyy.toString().substring(2, 4);
+		const MM: string = this._toMinChars(date.getMonth() + 1, 2);
+		const MMM: string = this._toMinChars(MONTHS[date.getMonth()], 2);
 
-		const HH = date.getHours();
-		const mm = date.getMinutes();
+		const yyyy: string = this._toMinChars(date.getFullYear(), 4);
+		const yy: string = this._toMinChars(parseInt(yyyy), 2);
 
-		const ss = date.getSeconds();
+		const HH = this._toMinChars(date.getHours(), 2);
+		const mm = this._toMinChars(date.getMinutes(), 2);
+
+		const ss = this._toMinChars(date.getSeconds(), 2);
 
 		switch (this._toFormat) {
 			case 'minutes':
@@ -70,26 +76,69 @@ export class DateFormat {
 		}
 	}
 
+	private _createDate(
+		year: number,
+		month: number,
+		day: number,
+		hours: number,
+		minutes: number,
+		seconds: number,
+		miliseconds: number,
+		timezone: string
+	): Date {
+		let yyyy = this._toMinChars(year, 4);
+
+		let MM = this._toMinChars(month + 1, 2);
+
+		let dd = this._toMinChars(day, 2);
+
+		let HH = this._toMinChars(hours, 2);
+
+		let mm = this._toMinChars(minutes, 2);
+
+		let ss = this._toMinChars(seconds, 2);
+
+		let ms = this._toMinChars(miliseconds, 3);
+
+		let tz = timezone;
+
+		console.log(`${yyyy}-${MM}-${dd}T${HH}:${mm}:${ss}.${ms}-${tz}`);
+
+		return new Date(`${yyyy}-${MM}-${dd}T${HH}:${mm}:${ss}.${ms}-${tz}`);
+	}
+
 	to(value: string): string | Date {
 		this._toFormat = value;
 
 		switch (this._fromFormat) {
 			case 'date':
-				return this._toDefaultFormat(this.valueDt);
+				return this._formatter(this.valueDt);
 
 			case 'HHmm': {
 				const now = new Date();
 
-				const originalValueToDateUTC = Date.UTC(
+				const dt = this._createDate(
 					now.getFullYear(),
-					now.getUTCMonth(),
-					now.getUTCDate(),
-					parseInt(this.valueStr.substring(0, 2)),
-					parseInt(this.valueStr.substring(2, 4)),
-					0
+					now.getMonth(),
+					now.getDate(),
+					parseInt(
+						this.valueStr.substring(
+							this.valueStr.length - 4,
+							this.valueStr.length - 2
+						)
+					),
+					parseInt(
+						this.valueStr.substring(
+							this.valueStr.length - 2,
+							this.valueStr.length
+						)
+					),
+					0,
+					0,
+					'00:00'
 				);
 
-				return this._toDefaultFormat(new Date(originalValueToDateUTC));
+				return this._formatter(dt);
 			}
 
 			case 'dd/MM/yyyy': {
@@ -103,7 +152,7 @@ export class DateFormat {
 					0
 				);
 
-				return this._toDefaultFormat(new Date(originalValueToDateUTC));
+				return this._formatter(new Date(originalValueToDateUTC));
 			}
 			case 'yyyy-MM-dd': {
 				const dtSplitted = this.valueStr.split('-');
@@ -116,7 +165,7 @@ export class DateFormat {
 					0
 				);
 
-				return this._toDefaultFormat(new Date(originalValueToDateUTC));
+				return this._formatter(new Date(originalValueToDateUTC));
 			}
 
 			case 'YYYYMMDD':
@@ -130,7 +179,7 @@ export class DateFormat {
 					0
 				);
 
-				return this._toDefaultFormat(new Date(originalValueToDateUTC));
+				return this._formatter(new Date(originalValueToDateUTC));
 			}
 
 			case 'dd/MM/yy': {
@@ -144,7 +193,7 @@ export class DateFormat {
 					0
 				);
 
-				return this._toDefaultFormat(new Date(originalValueToDateUTC));
+				return this._formatter(new Date(originalValueToDateUTC));
 			}
 
 			default:
