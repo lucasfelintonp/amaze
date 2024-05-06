@@ -1,9 +1,9 @@
-import { isArray } from "./isArray";
-import { isDate } from "./isDate";
-import { isDefined } from "./isDefined";
-import { isFunction } from "./isFunction";
-import { isObject } from "./isObject";
-import { isString } from "./isString";
+import { isArray } from './isArray';
+import { isDate } from './isDate';
+import { isDefined } from './isDefined';
+import { isFunction } from './isFunction';
+import { isObject } from './isObject';
+import { isString } from './isString';
 
 /**
  * RegExp pattern to empty string pattern
